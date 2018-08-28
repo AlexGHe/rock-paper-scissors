@@ -1,68 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link href = "./style.css" type = "text/css" rel = "stylesheet">
+  <meta charset = "utf-8">
   <title>Rock, Paper, Scissors</title>
 </head>
 <body>
-  <p id="demo"></p>
-  <script>
-
-    let computerScore = 0;
-    let playerScore = 0;
-    const currentScore = () => {
-      return ("Current score:\n" + "Computer - " + computerScore +
-      "\nYou - " + playerScore);
-    }
-    const finalScore = () => {
-      return ("Final score:\n" + "Computer - " + computerScore +
-      "\nYou - " + playerScore);
-    }
-
-    const startGame = game();
-
-    function game (){
-      for (i=0;i<=4;i++){
-        const playerSelection = prompt("rock, paper or scissors?").toLowerCase();
-        const computerSelection = computerPlay();
-        playRound(playerSelection, computerSelection);
-      }
-      if (computerScore > playerScore){
-        return ("You lost. " + finalScore());
-      }
-      else if (computerScore < playerScore){
-        return ("You won. " + finalScore());
-      }
-      else {
-        return ("It's a tie. " + finalScore());
-      }
-    }
-
-    function computerPlay(){
-      const possibleOutcomes = ["rock", "paper", "scissors"];
-      return possibleOutcomes[Math.floor(Math.random() * 3)];
-    }
-
-    function playRound(playerSelection, computerSelection) {
-      if (playerSelection === computerSelection){
-        return window.alert ("It's a tie! " + currentScore());
-      }
-      else if ((playerSelection === "rock") && (computerSelection === "paper") ||
-      (playerSelection === "paper") && (computerSelection === "scissors") ||
-      (playerSelection === "scissors") && (computerSelection === "rock")){
-        computerScore++;
-        return window.alert ("You lose! " + currentScore());
-      }
-      else if ((playerSelection === "rock") && (computerSelection === "scissors") ||
-      (playerSelection === "paper") && (computerSelection === "rock") ||
-      (playerSelection === "scissors") && (computerSelection === "paper")){
-        playerScore++;
-        return window.alert ("You win! " + currentScore());
-      }
-      else {
-        return window.alert ("Not a valid shape!");
-      }
-    }
-    document.getElementById("demo").innerHTML = startGame;
-  </script>
+  <h1 class = "title">
+    Rock, Paper, Scissors!
+  </h1>
+  <div class = "score">
+    <div id = "win">Wins</div>
+    <div id = "lose">Losses</div>
+    <div id = "tie">Ties</div>
+    <div id = "winScore">0</div>
+    <div id = "loseScore">0</div>
+    <div id = "tieScore">0</div>
+  </div>
+  <div class = "game">
+    <button class = "sideOptions" id = "rock" onclick="game(this.id)">
+      <img src = "media/cobblestone.png" alt = "rock"></button>
+    <button class = "middleOption" id = "paper" onclick="game(this.id)">
+      <img src = "media/paper.png" alt = "paper"></button>
+    <button class = "sideOptions" id = "scissors" onclick="game(this.id)">
+      <img src = "media/shears.png" alt = "scissors"></button>
+  </div>
+  <div class = "instructions">
+    <p>
+      Instructions:<br><br>
+      To start the game click on one of the three buttons above. The game ends
+      when the number of wins or losses reaches 5.
+    </p>
+  </div>
+  <h1 id = "finalScore">
+  </h1>
+  <div class = "resetScore">
+    <button onclick="reset()">Reset Game</button>
+  </div>
+  <footer>
+    <p class="githubProfile">
+      Created by &nbsp <a href="https://github.com/AlexGHe"> AlexGHe</a>
+    <p>
+    <script type="text/javascript" src="script.js"></script>
+  </footer>
 </body>
 </html>
